@@ -6,10 +6,6 @@ git-tree-sha1 = "98344a4fcd55f9cd99cc966da276be2fd44e8b06"
 uuid = "0fd90b74-7c1f-579e-9252-02cd883047b9"
 version = "0.1.0"
 
-[[Dates]]
-deps = ["Printf"]
-uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
-
 [[DelimitedFiles]]
 deps = ["Mmap"]
 uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
@@ -21,8 +17,8 @@ uuid = "d68c5960-3734-11e9-0c07-a30dcbe4dda4"
 version = "0.1.0"
 
 [[FinancialInstruments]]
-deps = ["Dates", "Entities", "Reexport"]
-path = "C:\\Users\\Eric\\.julia\\dev\\FinancialInstruments"
+deps = ["Entities", "Reexport"]
+git-tree-sha1 = "2a09c7d97463415e9d12e72a2601d9b4a278c488"
 uuid = "fc5b99d0-3725-11e9-2623-bf561589b708"
 version = "0.1.0"
 
@@ -41,16 +37,9 @@ version = "0.1.0"
 [[Mmap]]
 uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
-[[Printf]]
-deps = ["Unicode"]
-uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
-
 [[Reexport]]
 git-tree-sha1 = "7b1d07f411bc8ddb7977ec7f377b97b158514fe0"
 repo-rev = "master"
 repo-url = "https://github.com/EricForgy/Reexport.jl"
 uuid = "189a3867-3050-52da-a836-e630ba90ab69"
 version = "0.2.0+"
-
-[[Unicode]]
-uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
