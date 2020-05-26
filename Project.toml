@@ -1,8 +1,16 @@
 name = "Positions"
+desc = "Financial Positions"
 uuid = "81d999f0-3725-11e9-2196-fd457307c398"
-authors = ["Eric Forgy <Eric.Forgy@cavalre.com>"]
-version = "0.1.0"
+authors = ["Eric Forgy <Eric.Forgy@cavalre.com>", "ScottPJones <scottjones@alum.mit.edu>"]
+license = "MIT"
+version = "0.2.0"
 
 [deps]
 FinancialInstruments = "fc5b99d0-3725-11e9-2623-bf561589b708"
 FixedPointDecimals = "fb4d412d-6eee-574d-9565-ede6634db7b0"
+
+[extras]
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+
+[targets]
+build = ["JSON3"]
