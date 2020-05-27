@@ -2,13 +2,14 @@
 
 This is a base package for the JuliaFinance ecosytem.
 
-It provides a singleton type `Currency` based on standard ISO 4167 currency codes to be used primarily for dispatch in other JuliaFinance packages together with three methods:
+It provides a singleton type `Currency` based on standard ISO 4167 currency codes to be used primarily for dispatch in other JuliaFinance packages together with four methods:
 
+- `symbol`: The ISO 4167 3 letter symbol for the currency.
 - `name`: The name of the currency.
 - `code`: The ISO 4167 code for the currency.
 - `unit`: The minor unit, i.e. number of decimal places, for the currency.
 
-(this functionality used to be from the Currencies.jl package)
+This is provided from the [Currencies](https://github.com/JuliaFinance/Currencies.jl.git) package.
 
 These are simple labels, such as `Currency{:USD}`, `Currency{:EUR}`.
 
@@ -25,9 +26,9 @@ Short constants are set up, matching the ISO 4167 names, so that you can use `US
 
 `Position` represents ownership of a financial instrument including the quantity of that financial instrument. For example, Microsoft stock (MSFT) is a financial instrument. A position could be 1,000 shares of MSFT.
 
-In the case of currency, `Positions.USD` would be a financial instrument and owning $1,000 would mean you own 1,000 units of the financial instrument `Positions.USD`.
+In the case of currency, `Instruments.USD` would be a financial instrument and owning $1,000 would mean you own 1,000 units of the financial instrument `Instruments.USD`.
 
-If you are building a financial application that requires adding, subtracting, multiplying and dividing currencies, then you want to use `Positions`.
+If you are building a financial application that requires adding, subtracting, multiplying and dividing currencies, then you want to use `Instruments`.
 
 For example:
 ```julia
@@ -61,5 +62,6 @@ Note that algebraic operations of currency positions require the positions to be
 
 See also:
 
-- [Markets.jl](https://github.com/JuliaFinance/Markets.jl)
-- [GeneralLedgers.jl](https://github.com/JuliaFinance/GeneralLedgers.jl)
+- [Currencies.jl](https://github.com/JuliaFinance/Currencies.jl.git)
+- [Markets.jl](https://github.com/JuliaFinance/Markets.jl.git)
+- [GeneralLedgers.jl](https://github.com/JuliaFinance/GeneralLedgers.jl.git)

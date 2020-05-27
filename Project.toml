@@ -1,5 +1,5 @@
 name = "Instruments"
-uuid = "81d999f0-3725-11e9-2196-fd457307c398"
+uuid = "2a4f3d17-849a-48a1-809e-d780c70a95a0"
 license = "MIT"
 desc = "Financial Instruments"
 authors = ["Eric Forgy <Eric.Forgy@cavalre.com>", "ScottPJones <scottjones@alum.mit.edu>"]
