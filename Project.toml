@@ -1,17 +1,16 @@
-name = "Positions"
-desc = "Financial Positions"
+name = "Instruments"
 uuid = "81d999f0-3725-11e9-2196-fd457307c398"
-authors = ["Eric Forgy <Eric.Forgy@cavalre.com>", "ScottPJones <scottjones@alum.mit.edu>"]
 license = "MIT"
+desc = "Financial Instruments"
+authors = ["Eric Forgy <Eric.Forgy@cavalre.com>", "ScottPJones <scottjones@alum.mit.edu>"]
 version = "0.2.0"
 
 [deps]
+Currencies = "0fd90b74-7c1f-579e-9252-02cd883047b9"
 FixedPointDecimals = "fb4d412d-6eee-574d-9565-ede6634db7b0"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
 
 [targets]
 test = ["Test"]
-build = ["JSON3"]
