@@ -34,7 +34,7 @@ For example:
 ```julia
 julia> using Instruments
 
-julia> import Instruments: USD, JPY
+julia> using Instruments: USD, JPY
 
 julia> 10USD
 10.00USD
@@ -55,7 +55,7 @@ julia> 100JPY/5JPY
 FixedDecimal{Int64,0}(20)
 
 julia> 100USD+100JPY
-ERROR: promotion of types Position{Cash{Currency{:USD}},FixedPointDecimals.FixedDecimal{Int64,2}} and Position{Cash{Currency{:JPY}},FixedPointDecimals.FixedDecimal{Int64,0}} failed to change any arguments
+ERROR: Can't add Positions of different Instruments USD, JPY
 ```
 
 Note that algebraic operations of currency positions require the positions to be of the same financial instrument. In this case, they must be the same currency as indicated by the error in the last command above.

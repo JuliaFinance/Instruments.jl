@@ -1,33 +1,47 @@
 using Instruments
-import Instruments: USD, EUR, JPY, CNY, currency, symbol, unit, code, name
+using Instruments: currency, symbol, unit, code, name
+using Instruments: USD, EUR, JPY, JOD, CNY
 
 using Test
 
-instruments = [USD, EUR, JPY, CNY]
-currencies = [Currency{s}() for s in [:USD, :EUR, :JPY, :CNY]]
-units = [2,2,2,2]
-names = ["US Dollar","Euro","Yen","Yuan Renminbi"]
-codes = [840,608,344,702]
+# Check that some basic currencies have been loaded correctly
+# (this part should really be in Currencies.jl, not here)
 
-for (cash,ccy,u,n,c) in zip(instruments,currencies,units,names,codes)
-    @test cash == Cash(ccy)
-    @test cash == Cash(symbol(ccy))
-    @test currency(cash) == ccy
-    @test symbol(cash) == symbol(ccy)
-    @test unit(cash) == unit(ccy)
-    @test code(cash) == code(ccy)
-    @test name(cash) == name(ccy)
+currencies = ((USD, :USD, 2, 840, "US Dollar"),
+              (EUR, :EUR, 2, 978, "Euro"),
+              (JPY, :JPY, 0, 392, "Yen"),
+              (JOD, :JOD, 3, 400, "Jordanian Dinar"),
+              (CNY, :CNY, 2, 156, "Yuan Renminbi"))
+
+@testset "Basic currencies" begin
+    for (ccy, s, u, c, n) in currencies
+        @test symbol(ccy) == s
+        @test unit(ccy) == u
+        @test name(ccy) == n
+        @test code(ccy) == c
+    end
+end
     
-    position = Position(cash,1)
-    @test currency(position) == currency(cash)
-    @test currency(1cash) == ccy
-    @test 1cash == position
-    @test cash*1 == position
-    @test 1cash+1cash == Position(cash,2)
-    @test 1cash-1cash == Position(cash,0)
-    @test 20cash/4cash == FixedDecimal{Int,unit(cash)}(5)
-    @test 20cash/4 == Position(cash,5)
-    # @test unit(ccy) == u
-    # @test name(ccy) == n
-    # @test code(ccy) == c
+@testset "All currencies" begin
+    for sym in keys(Currencies.list)
+        ccy = Currency{sym}()
+        cash = Base.eval(Instruments, sym)
+        @test cash == Cash(ccy)
+        @test cash == Cash(symbol(ccy))
+        @test currency(cash) == ccy
+        @test symbol(cash) == symbol(ccy)
+        @test unit(cash) == unit(ccy)
+        @test code(cash) == code(ccy)
+        @test name(cash) == name(ccy)
+    
+        position = Position(cash, 1)
+        @test currency(position) == currency(cash)
+        @test currency(1cash) == ccy
+        @test 1cash == position
+        @test cash * 1 == position
+        @test 1cash + 1cash == Position(cash, 2)
+        @test 1cash - 1cash == Position(cash, 0)
+        @test 20cash / 4cash == FixedDecimal{Int,unit(cash)}(5)
+        @test 20cash / 4 == Position(cash, 5)
+    end
 end
