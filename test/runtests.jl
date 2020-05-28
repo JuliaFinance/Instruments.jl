@@ -23,7 +23,7 @@ currencies = ((USD, :USD, 2, 840, "US Dollar"),
 end
     
 @testset "All currencies" begin
-    for sym in keys(Currencies.list)
+    for sym in Currencies.allsymbols()
         ccy = Currency{sym}()
         cash = Base.eval(Instruments, sym)
         @test cash == Cash(ccy)

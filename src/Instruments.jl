@@ -1,9 +1,7 @@
 """
 Instruments
 
-This package provides the `AbstractInstrument` abstract type together with
-`Cash` and `Position` types for dealing with currencies and other financial 
-instruments.
+This package provides the `AbstractInstrument` abstract type together with `Cash` and `Position` parametric types for dealing with currencies and other financial instruments.
 
 See [README](https://github.com/JuliaFinance/Instruments.jl.git/README.md) for the full documentation
 
@@ -21,7 +19,7 @@ export AbstractInstrument, Cash
 export Currencies, Currency
 
 """
-This is an abstract type for `AbstractInstrument` such as `Cash`, `Stock`, etc.
+This is an abstract type from which all financial instruments such as `Cash`, `Stock`, etc. should subtype.
 """
 abstract type AbstractInstrument{S,C<:Currency} end
 
@@ -29,41 +27,26 @@ symbol(::AbstractInstrument{S}) where {S} = S
 currency(::AbstractInstrument{S,C}) where {S,C} = C()
 
 """
-`Cash` is a `AbstractInstrument`, that represents a particular currency as well
-as the number of digits in the minor units, typically 0, 2, or 3
-"""
-struct Cash{S, N} <: AbstractInstrument{S,Currency{S}} end
-Cash(S::Symbol) = Cash{S,unit(S)}()
-Cash(C::Currency) = Cash(symbol(C))
-
-unit(c::Cash) = unit(currency(c))
-code(c::Cash) = code(currency(c))
-name(c::Cash) = name(currency(c))
-
-Base.show(io::IO, ::Cash{<:Currency{T}}) where {T} = print(io, string(T))
-
-"""
-Position represents a certain quantity of a particular financial instrument
+`Position` represents ownership of a certain quantity of a particular financial instrument.
 """
 struct Position{I<:AbstractInstrument,A}
     instrument::I
     amount::A
-    function Position(instrument::I, a) where {I<:AbstractInstrument}
-        T = FixedDecimal{Int,unit(currency(instrument))}
-        new{I,T}(instrument,T(a))
-    end
 end
 
 """
-Returns the financial instrument (as an instance) for a position
+Returns the financial instrument (as an instance) for a position.
 """
 instrument(p::Position) = p.instrument
 
 """
-Returns the amount of the instrument for a position
+Returns the amount of the instrument in the `Position` owned.
 """
 amount(p::Position) = p.amount
 
+"""
+Returns the currency of the instrument in the `Position`.
+"""
 currency(p::Position) = currency(instrument(p))
 
 Base.promote_rule(::Type{Position{F,A1}}, ::Type{Position{F,A2}}) where {F,A1,A2} =
@@ -100,10 +83,6 @@ Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), instru
 Base.zero(::Type{Position{F,A}}) where {F,A} = Position{F,A}(zero(A))
 Base.one(::Type{Position{F,A}}) where {F,A} = Position{F,A}(one(A))
 
-# Set up short names for all of the currencies (as instances of the Cash instruments)
-
-for symbol in keys(Currencies.list)
-    @eval const $symbol = Cash($(QuoteNode(symbol)))
-end
+include(joinpath(@__DIR__,"Cash.jl"))
 
 end # module Instruments

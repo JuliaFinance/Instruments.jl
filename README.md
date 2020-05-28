@@ -1,36 +1,54 @@
 # Instruments.jl
 
-This is a base package for the JuliaFinance ecosytem.
+This is a core package for the JuliaFinance ecosytem.
 
-It provides a singleton type `Currency` based on standard ISO 4167 currency codes to be used primarily for dispatch in other JuliaFinance packages together with four methods:
+A financial instrument is a tradeable monetary contract that creates both an asset for one party and a liability for another. Examples of financial instruments include currencies, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
 
-- `symbol`: The ISO 4167 3 letter symbol for the currency.
-- `name`: The name of the currency.
-- `code`: The ISO 4167 code for the currency.
-- `unit`: The minor unit, i.e. number of decimal places, for the currency.
+## `AbstractInstrument{S,C<:Currency}`
 
-This is provided from the [Currencies](https://github.com/JuliaFinance/Currencies.jl.git) package.
+All financial instruments should be subtypes of `AbstractInstrument`, which is an abstract parametric type parameterized with the instrument's symbol identifier `S` and its `Currency`.
 
-These are simple labels, such as `Currency{:USD}`, `Currency{:EUR}`.
+## `Cash{S,N} <: AbstractInstrument{S,currency(S))}`
 
-In addition, this package provides an abstract type `AbstractInstrument`.
-
-A financial instrument is a tradeable monetary contract that creates an asset for some parties while, at same time, creating a liability for others.
-
-Examples of financial instruments include stocks, bonds, loans, derivatives, etc. However, the most basic financial instruments are currencies.
-
-When a currency is thought of as a financial instrument (as opposed to a mere label used in UI component), we choose to refer to it as `Cash` (as it would appear in a balance sheet).
-The `Cash` type keeps track of the number of minor units as part of the type, for performance and dispatching reasons.
+When a currency is thought of as a financial instrument (as opposed to a mere label), we choose to refer to it as "Cash" as it would appear in a balance sheet. This package implements the `Cash` instrument with parameter `S` being the 3-character ISO 4167 alpha label of the currency as a `Symbol` and an integer `N` representing the number of decimal places in the currency (typically 0, 2 or 3).
 
 Short constants are set up, matching the ISO 4167 names, so that you can use `USD` instead of `Cash{:USD,2}()`.
 
-`Position` represents ownership of a financial instrument including the quantity of that financial instrument. For example, Microsoft stock (MSFT) is a financial instrument. A position could be 1,000 shares of MSFT.
+For example:
 
-In the case of currency, `Instruments.USD` would be a financial instrument and owning $1,000 would mean you own 1,000 units of the financial instrument `Instruments.USD`.
+```julia
+julia> import Instruments: JPY, USD, JOD
 
-If you are building a financial application that requires adding, subtracting, multiplying and dividing currencies, then you want to use `Instruments`.
+julia> typeof(JPY)
+Cash{:JPY,0}
+
+julia> typeof(USD)
+Cash{:USD,2}
+
+julia> typeof(JOD)
+Cash{:JOD,3}
+```
+
+Although `Cash` is a singleton type, other financial instruments may contain various fields needed for cashflow projections, pricing, etc.
+
+## `Position{I<:AbstractInstrument, A}`
+
+A `Position` represents an amount of a financial instrument. For example, Microsoft stock (`MSFT`) is a financial instrument. A position could be 1,000 shares of `MSFT`.
+
+In the case of currency, `USD` would be a financial instrument (`Cash`) and owning $1,000 would mean you own 1,000 units of `USD`, which can be expressed as
+
+```julia
+julia> 1000USD
+1000.00USD
+
+julia> typeof(1000USD)
+Position{Cash{:USD,2},FixedDecimal{Int64,2}}
+```
+
+Simple algebraic operations can be performed on positions.
 
 For example:
+
 ```julia
 julia> using Instruments
 
@@ -58,9 +76,9 @@ julia> 100USD+100JPY
 ERROR: Can't add Positions of different Instruments USD, JPY
 ```
 
-Note that algebraic operations of currency positions require the positions to be of the same financial instrument. In this case, they must be the same currency as indicated by the error in the last command above.
+Note that algebraic operations of currency positions require the positions to be of the same instrument. In this case, they must be the same currency as indicated by the error in the last command above.
 
-See also:
+For more information, see
 
 - [Currencies.jl](https://github.com/JuliaFinance/Currencies.jl.git)
 - [Markets.jl](https://github.com/JuliaFinance/Markets.jl.git)
