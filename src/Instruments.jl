@@ -84,6 +84,6 @@ Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), instru
 Base.zero(::Type{Position{F,A}}) where {F,A} = Position{F,A}(zero(A))
 Base.one(::Type{Position{F,A}}) where {F,A} = Position{F,A}(one(A))
 
-include(joinpath("Cash.jl"))
+include("Cash.jl")
 
 end # module Instruments
