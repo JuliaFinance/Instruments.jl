@@ -18,5 +18,5 @@ end
 
 # Set up short names for all of the currencies (as instances of the Cash instruments)
 for (s,(ccy,u,c,n)) in Currencies.allpairs()
-    @eval Instruments const $s = Cash($ccy)
+    @eval const $s = Cash($ccy)
 end

@@ -33,6 +33,7 @@ struct Position{I<:AbstractInstrument,A}
     instrument::I
     amount::A
 end
+Position(::I,a::A) where {I<:AbstractInstrument,A<:Real} = Position{I,A}(a)
 
 """
 Returns the financial instrument (as an instance) for a position.
@@ -83,6 +84,6 @@ Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), instru
 Base.zero(::Type{Position{F,A}}) where {F,A} = Position{F,A}(zero(A))
 Base.one(::Type{Position{F,A}}) where {F,A} = Position{F,A}(one(A))
 
-include(joinpath(@__DIR__,"Cash.jl"))
+include(joinpath("Cash.jl"))
 
 end # module Instruments
