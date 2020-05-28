@@ -15,7 +15,7 @@ using Currencies, FixedPointDecimals
 import Currencies: symbol, unit, code, name
 
 export Position, FixedDecimal
-export AbstractInstrument, Cash
+export AbstractInstrument
 export Currencies, Currency
 
 """
@@ -80,10 +80,5 @@ Base.show(io::IO, ::MIME"text/plain", inst::AbstractInstrument) = print(io, symb
 
 Base.show(io::IO, p::Position) = print(io, p.amount, instrument(p))
 Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), instrument(p))
-
-Base.zero(::Type{Position{F,A}}) where {F,A} = Position{F,A}(zero(A))
-Base.one(::Type{Position{F,A}}) where {F,A} = Position{F,A}(one(A))
-
-include(joinpath("Cash.jl"))
 
 end # module Instruments
