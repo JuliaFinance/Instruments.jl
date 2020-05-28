@@ -11,11 +11,11 @@ Licensed under MIT License, see [LICENSE](https://github.com/JuliaFinance/Instru
 """
 module Instruments
 
-using Currencies, FixedPointDecimals
+using Currencies
 import Currencies: symbol, unit, code, name
 
-export Position, FixedDecimal
-export AbstractInstrument, Cash
+export Position
+export AbstractInstrument
 export Currencies, Currency
 
 """
@@ -33,7 +33,7 @@ struct Position{I<:AbstractInstrument,A}
     instrument::I
     amount::A
 end
-Position(::I,a::A) where {I<:AbstractInstrument,A<:Real} = Position{I,A}(a)
+# Position(inst::I,a::A) where {I<:AbstractInstrument,A<:Real} = Position{I,A}(inst,a)
 
 """
 Returns the financial instrument (as an instance) for a position.
@@ -80,10 +80,5 @@ Base.show(io::IO, ::MIME"text/plain", inst::AbstractInstrument) = print(io, symb
 
 Base.show(io::IO, p::Position) = print(io, p.amount, instrument(p))
 Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), instrument(p))
-
-Base.zero(::Type{Position{F,A}}) where {F,A} = Position{F,A}(zero(A))
-Base.one(::Type{Position{F,A}}) where {F,A} = Position{F,A}(one(A))
-
-include("Cash.jl")
 
 end # module Instruments

@@ -7,7 +7,6 @@ version = "0.2.0"
 
 [deps]
 Currencies = "0fd90b74-7c1f-579e-9252-02cd883047b9"
-FixedPointDecimals = "fb4d412d-6eee-574d-9565-ede6634db7b0"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
