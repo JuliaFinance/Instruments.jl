@@ -76,7 +76,7 @@ julia> 100USD+100JPY
 ERROR: Can't add Positions of different Instruments USD, JPY
 ```
 
-Note that algebraic operations of currency positions require the positions to be of the same instrument. In this case, they must be the same currency as indicated by the error in the last command above.
+Note that algebraic operations on positions require the positions to be of the same instrument. In this case, they must be the same currency as indicated by the error in the last command above.
 
 For more information, see
 
