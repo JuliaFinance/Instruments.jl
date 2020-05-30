@@ -4,6 +4,38 @@ This is a core package for the JuliaFinance ecosytem.
 
 A financial instrument is a tradeable monetary contract that creates both an asset for one party and a liability for another. Examples of financial instruments include currencies, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
 
+[pkg-url]: https://github.com/JuliaFinance/Instruments.jl.git
+
+[eval-url]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/report.html
+[eval-img]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/I/Instruments.svg
+
+[release]:      https://img.shields.io/github/release/JuliaFinance/Instruments.jl.svg
+[release-date]: https://img.shields.io/github/release-date/JuliaFinance/Instruments.jl.svg
+
+[license-img]:  http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
+[license-url]:  LICENSE.md
+[travis-url]:   https://travis-ci.org/JuliaFinance/Instruments.jl
+[travis-s-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg
+[travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=master
+
+[app-s-url]:    https://ci.appveyor.com/project/JuliaFinance/assets-jl
+[app-m-url]:    https://ci.appveyor.com/project/JuliaFinance/assets-jl/branch/master
+[app-s-img]:    https://ci.appveyor.com/api/projects/status/iawgoj3qf9bygq8h?svg=true
+[app-m-img]:    https://ci.appveyor.com/api/projects/status/iawgoj3qf9bygq8h/branch/master?svg=true
+
+[contrib]:    https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+
+[codecov-url]:  https://codecov.io/gh/JuliaFinance/Instruments.jl
+[codecov-img]:  https://codecov.io/gh/JuliaFinance/Instruments.jl/branch/master/graph/badge.svg
+
+[![contributions welcome][contrib]](https://github.com/JuliaFinance/Instruments.jl/issues)
+[![][license-img]][license-url]
+
+| **Info** | **Windows** | **Linux & MacOS** | **Package Evaluator** | **Coverage** |
+|:------------------:|:------------------:|:---------------------:|:-----------------:|:---------------------:|
+| [![][release]][pkg-url] [![][release-date]][pkg-url] | [![][app-s-img]][app-s-url] | [![][travis-s-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
+| master branch | [![][app-m-img]][app-m-url] | [![][travis-m-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
+
 ## `AbstractInstrument{S,C<:Currency}`
 
 All financial instruments should be subtypes of `AbstractInstrument`, which is an abstract parametric type parameterized with the instrument's symbol identifier `S` and its `Currency`.
