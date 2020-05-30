@@ -14,6 +14,9 @@ A financial instrument is a tradeable monetary contract that creates both an ass
 
 [license-img]:  http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
 [license-url]:  LICENSE.md
+[julia-url]:          https://github.com/JuliaLang/julia
+[julia-release]:      https://img.shields.io/github/release/JuliaLang/julia.svg
+
 [travis-url]:   https://travis-ci.org/JuliaFinance/Instruments.jl
 [travis-s-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg
 [travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=master
@@ -28,13 +31,12 @@ A financial instrument is a tradeable monetary contract that creates both an ass
 [codecov-url]:  https://codecov.io/gh/JuliaFinance/Instruments.jl
 [codecov-img]:  https://codecov.io/gh/JuliaFinance/Instruments.jl/branch/master/graph/badge.svg
 
-[![contributions welcome][contrib]](https://github.com/JuliaFinance/Instruments.jl/issues)
-[![][license-img]][license-url]
+[![][release]][pkg-url] [![][release-date]][pkg-url] [![][license-img]][license-url] [![contributions welcome][contrib]](https://github.com/JuliaFinance/Instruments.jl/issues)
 
 | **Info** | **Windows** | **Linux & MacOS** | **Package Evaluator** | **Coverage** |
 |:------------------:|:------------------:|:---------------------:|:-----------------:|:---------------------:|
-| [![][release]][pkg-url] [![][release-date]][pkg-url] | [![][app-s-img]][app-s-url] | [![][travis-s-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
-| master branch | [![][app-m-img]][app-m-url] | [![][travis-m-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
+| [![][julia-release]][julia-url] | [![][app-s-img]][app-s-url] | [![][travis-s-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
+| Master | [![][app-m-img]][app-m-url] | [![][travis-m-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
 
 ## `AbstractInstrument{S,C<:Currency}`
 
