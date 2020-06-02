@@ -12,7 +12,7 @@ Licensed under MIT License, see [LICENSE](https://github.com/JuliaFinance/Instru
 module Instruments
 
 using Currencies
-import Currencies: symbol, unit, code, name
+import Currencies: currency, symbol, unit, code, name
 
 export Position
 export AbstractInstrument
@@ -24,7 +24,7 @@ This is an abstract type from which all financial instruments such as `Cash`, `S
 abstract type AbstractInstrument{S,C<:Currency} end
 
 symbol(::AbstractInstrument{S}) where {S} = S
-currency(::AbstractInstrument{S,C}) where {S,C} = C()
+currency(::AbstractInstrument{S,Currency{CS}}) where {S,CS} = currency(CS)
 
 """
 `Position` represents ownership of a certain quantity of a particular financial instrument.
