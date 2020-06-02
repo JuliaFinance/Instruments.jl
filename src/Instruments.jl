@@ -1,7 +1,7 @@
 """
 Instruments
 
-This package provides the `AbstractInstrument` abstract type together with `Cash` and `Position` parametric types for dealing with currencies and other financial instruments.
+This package provides the `AbstractInstrument` abstract type together with the `Position` parametric type for dealing with currencies and other financial instruments.
 
 See [README](https://github.com/JuliaFinance/Instruments.jl.git/README.md) for the full documentation
 
