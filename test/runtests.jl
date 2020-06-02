@@ -1,7 +1,7 @@
 using Instruments
 using Instruments: currency, symbol, unit, code, name
 
-# using Test
+using Test
 
 @testset "All currencies" begin
     for sym in Currencies.allsymbols()
