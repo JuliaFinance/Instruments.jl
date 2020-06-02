@@ -16,4 +16,4 @@ Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 test = ["Test"]
 
 [compat]
-Currencies = "0.13"
+Currencies = "0.14"
