@@ -38,11 +38,11 @@ A financial instrument is a tradeable monetary contract that creates both an ass
 | [![][julia-release]][julia-url] | [![][app-s-img]][app-s-url] | [![][travis-s-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
 | Master | [![][app-m-img]][app-m-url] | [![][travis-m-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
 
-## `AbstractInstrument{S,C<:Currency}`
+## `Instrument{S,C<:Currency}`
 
-All financial instruments should be subtypes of `AbstractInstrument`, which is an abstract parametric type parameterized with the instrument's symbol identifier `S` and its `Currency`.
+All financial instruments should be subtypes of `Instrument`, which is an abstract parametric type parameterized with the instrument's symbol identifier `S` and its `Currency`.
 
-## `Cash{S,N} <: AbstractInstrument{S,currency(S))}`
+## `Cash{S,N} <: Instrument{S,currency(S))}`
 
 When a currency is thought of as a financial instrument (as opposed to a mere label), we choose to refer to it as "Cash" as it would appear in a balance sheet. This package implements the `Cash` instrument with parameter `S` being the 3-character ISO 4167 alpha label of the currency as a `Symbol` and an integer `N` representing the number of decimal places in the currency (typically 0, 2 or 3).
 
@@ -65,7 +65,7 @@ Cash{:JOD,3}
 
 Although `Cash` is a singleton type, other financial instruments may contain various fields needed for cashflow projections, pricing, etc.
 
-## `Position{I<:AbstractInstrument, A}`
+## `Position{I<:Instrument, A}`
 
 A `Position` represents an amount of a financial instrument. For example, Microsoft stock (`MSFT`) is a financial instrument. A position could be 1,000 shares of `MSFT`.
 
