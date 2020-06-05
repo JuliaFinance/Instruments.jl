@@ -8,12 +8,12 @@ version = "0.1.0"
 [deps]
 Currencies = "0fd90b74-7c1f-579e-9252-02cd883047b9"
 
+[compat]
+Currencies = "0.15"
+
 [extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Test"]
-
-[compat]
-Currencies = "0.15"
