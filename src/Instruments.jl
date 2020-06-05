@@ -14,9 +14,7 @@ module Instruments
 using Currencies
 import Currencies: currency, symbol, unit, code, name
 
-export Position
-export AbstractInstrument
-export Currencies, Currency
+export AbstractInstrument, Position
 
 """
 This is an abstract type from which all financial instruments such as `Cash`, `Stock`, etc. should subtype.
