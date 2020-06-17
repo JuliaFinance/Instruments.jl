@@ -33,7 +33,9 @@ struct Position{I<:Instrument,A}
 end
 # Position(inst::I,a::A) where {I<:Instrument,A<:Real} = Position{I,A}(inst,a)
 
-(instrument::Instrument)(amount::A) where {A<:Real} = Position(instrument,amount)
+if VERSION >= v"1.3"
+    (instrument::Instrument)(amount) = Position(instrument,amount)
+end
 
 """
 Returns the financial instrument (as an instance) for a position.
