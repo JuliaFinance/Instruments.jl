@@ -33,6 +33,8 @@ struct Position{I<:Instrument,A}
 end
 # Position(inst::I,a::A) where {I<:Instrument,A<:Real} = Position{I,A}(inst,a)
 
+(instrument::Instrument)(amount::A) where {A<:Real} = Position(instrument,amount)
+
 """
 Returns the financial instrument (as an instance) for a position.
 """
