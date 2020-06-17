@@ -33,6 +33,10 @@ struct Position{I<:Instrument,A}
 end
 # Position(inst::I,a::A) where {I<:Instrument,A<:Real} = Position{I,A}(inst,a)
 
+if VERSION >= v"1.3"
+    (instrument::Instrument)(amount) = Position(instrument,amount)
+end
+
 """
 Returns the financial instrument (as an instance) for a position.
 """
@@ -52,14 +56,14 @@ Base.promote_rule(::Type{Position{F,A1}}, ::Type{Position{F,A2}}) where {F,A1,A2
     Position{F,promote_type(A1,A2)}
 Base.convert(::Type{Position{F,A}}, x::Position{F,A}) where {F,A} = x
 Base.convert(::Type{Position{F,A}}, x::Position{F,<:Real}) where {F,A} =
-    Position{F,A}(convert(A, x.amount))
+    Position{F,A}(x.instrument, convert(A, x.amount))
 
-Base.:+(p1::Position{F1}, p2::Position{F2}) where {F1,F2} =
+Base.:+(::Position{F1}, ::Position{F2}) where {F1,F2} =
     error("Can't add Positions of different Instruments $(F1()), $(F2())")
 Base.:+(p1::Position{F}, p2::Position{F}) where {F} =
     Position(p1.instrument, p1.amount + p2.amount)
 
-Base.:-(p1::Position{F1}, p2::Position{F2}) where {F1,F2} =
+Base.:-(::Position{F1}, ::Position{F2}) where {F1,F2} =
     error("Can't subtract Positions of different Instruments $(F1()), $(F2())")
 Base.:-(p1::Position{F}, p2::Position{F}) where {F} =
     Position(p1.instrument, p1.amount - p2.amount)
