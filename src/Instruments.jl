@@ -28,19 +28,18 @@ currency(::Instrument{S,Currency{CS}}) where {S,CS} = currency(CS)
 `Position` represents ownership of a certain quantity of a particular financial instrument.
 """
 struct Position{I<:Instrument,A}
-    instrument::I
     amount::A
 end
-# Position(inst::I,a::A) where {I<:Instrument,A<:Real} = Position{I,A}(inst,a)
+Position{I}(a) where {I<:Instrument} = Position{I,typeof(a)}(a)
 
 if VERSION >= v"1.3"
-    (instrument::Instrument)(amount) = Position(instrument,amount)
+    (instrument::Instrument)(amount) = Position{typeof(instrument)}(amount)
 end
 
 """
-Returns the financial instrument (as an instance) for a position.
+Returns the financial instrument type of a position.
 """
-instrument(p::Position) = p.instrument
+instrument(::Position{I}) where {I} = I()
 
 """
 Returns the amount of the instrument in the `Position` owned.
@@ -48,39 +47,46 @@ Returns the amount of the instrument in the `Position` owned.
 amount(p::Position) = p.amount
 
 """
+Returns the symbol of the instrument in the `Position`.
+"""
+symbol(::Position{I,A}) where {I,A} = symbol(I())
+
+"""
 Returns the currency of the instrument in the `Position`.
 """
 currency(p::Position) = currency(instrument(p))
 
-Base.promote_rule(::Type{Position{F,A1}}, ::Type{Position{F,A2}}) where {F,A1,A2} =
-    Position{F,promote_type(A1,A2)}
-Base.convert(::Type{Position{F,A}}, x::Position{F,A}) where {F,A} = x
-Base.convert(::Type{Position{F,A}}, x::Position{F,<:Real}) where {F,A} =
-    Position{F,A}(x.instrument, convert(A, x.amount))
+Base.promote_rule(::Type{Position{I,A1}}, ::Type{Position{I,A2}}) where {I,A1,A2} =
+    Position{I,promote_type(A1,A2)}
+Base.convert(::Type{Position{I,A}}, x::Position{I,A}) where {I,A} = x
+Base.convert(::Type{Position{I}}, x::Position{I}) where {I,A} =
+    Position{I}(convert(A, x.amount))
 
-Base.:+(::Position{F1}, ::Position{F2}) where {F1,F2} =
-    error("Can't add Positions of different Instruments $(F1()), $(F2())")
-Base.:+(p1::Position{F}, p2::Position{F}) where {F} =
-    Position(p1.instrument, p1.amount + p2.amount)
+Base.:+(::Position{I1}, ::Position{I2}) where {I1,I2} =
+    error("Can't add Positions of different Instruments $(I1()), $(I2())")
+Base.:+(p1::Position{I}, p2::Position{I}) where {I} =
+    Position{I}(p1.amount + p2.amount)
 
-Base.:-(::Position{F1}, ::Position{F2}) where {F1,F2} =
-    error("Can't subtract Positions of different Instruments $(F1()), $(F2())")
-Base.:-(p1::Position{F}, p2::Position{F}) where {F} =
-    Position(p1.instrument, p1.amount - p2.amount)
+Base.:-(::Position{I1}, ::Position{I2}) where {I1,I2} =
+    error("Can't subtract Positions of different Instruments $(I1()), $(I2())")
+Base.:-(p1::Position{I}, p2::Position{I}) where {I} =
+    Position{I}(p1.amount - p2.amount)
 
-Base.:/(p1::Position, p2::Position) = p1.amount / p2.amount
-Base.:/(p::Position, k::Real) = Position(p.instrument, p.amount / k)
+Base.:/(::Position{I1}, ::Position{I2}) where {I1,I2} =
+    error("Can't divide Positions of different Instruments $(I1()), $(I2())")
+Base.:/(p1::Position{I}, p2::Position{I}) where {I} = p1.amount / p2.amount
+Base.:/(p::Position{I}, k::Real) where {I} = Position{I}(p.amount / k)
 
-Base.:*(k::Real, p::Position) = Position(p.instrument, p.amount * k)
+Base.:*(k::Real, p::Position{I}) where {I} = Position{I}(p.amount * k)
 Base.:*(p::Position, k::Real) = k * p
 
-Base.:*(val::Real, inst::Instrument) = Position(inst, val)
-Base.:*(inst::Instrument, val::Real) = Position(inst, val)
+Base.:*(val::Real, ::I) where {I<:Instrument} = Position{I}(val)
+Base.:*(::I, val::Real) where {I<:Instrument} = Position{I}(val)
 
 Base.show(io::IO, inst::Instrument) = print(io, symbol(inst))
 Base.show(io::IO, ::MIME"text/plain", inst::Instrument) = print(io, symbol(inst))
 
-Base.show(io::IO, p::Position) = print(io, p.amount, instrument(p))
-Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), instrument(p))
+Base.show(io::IO, p::Position) = print(io, p.amount, symbol(p))
+Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), symbol(p))
 
 end # module Instruments
