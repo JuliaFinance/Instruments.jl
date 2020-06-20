@@ -71,6 +71,7 @@ Base.:-(::Position{I1}, ::Position{I2}) where {I1,I2} =
     error("Can't subtract Positions of different Instruments $(I1()), $(I2())")
 Base.:-(p1::Position{I}, p2::Position{I}) where {I} =
     Position{I}(p1.amount - p2.amount)
+Base.:-(p::Position{I}) where {I} = Position{I}(-p.amount)
 
 Base.:/(::Position{I1}, ::Position{I2}) where {I1,I2} =
     error("Can't divide Positions of different Instruments $(I1()), $(I2())")
