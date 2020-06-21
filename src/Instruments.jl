@@ -21,8 +21,11 @@ This is an abstract type from which all financial instruments such as `Cash`, `S
 """
 abstract type Instrument{S,C<:Currency} end
 
-symbol(::Instrument{S}) where {S} = S
-currency(::Instrument{S,Currency{CS}}) where {S,CS} = currency(CS)
+symbol(::TI) where {TI<:Type{I}} where {I<:Instrument{S}} where {S} = S
+currency(::TI) where {TI<:Type{I}} where {I<:Instrument{S,Currency{CS}}} where {S,CS} = currency(CS)
+
+symbol(::I) where {I<:Instrument{S}} where {S} = S
+currency(::I) where {I<:Instrument{S,Currency{CS}}} where {S,CS} = currency(CS)
 
 """
 `Position` represents ownership of a certain quantity of a particular financial instrument.
@@ -39,7 +42,7 @@ end
 """
 Returns the financial instrument type of a position.
 """
-instrument(::Position{I}) where {I} = I()
+instrument(::Position{I}) where {I} = I
 
 """
 Returns the amount of the instrument in the `Position` owned.
@@ -49,12 +52,12 @@ amount(p::Position) = p.amount
 """
 Returns the symbol of the instrument in the `Position`.
 """
-symbol(::Position{I,A}) where {I,A} = symbol(I())
+symbol(::Position{I,A}) where {I,A} = symbol(I)
 
 """
 Returns the currency of the instrument in the `Position`.
 """
-currency(p::Position) = currency(instrument(p))
+currency(::Position{I}) where {I<:Instrument}= currency(I)
 
 Base.promote_rule(::Type{Position{I,A1}}, ::Type{Position{I,A2}}) where {I,A1,A2} =
     Position{I,promote_type(A1,A2)}
@@ -84,10 +87,10 @@ Base.:*(p::Position, k::Real) = k * p
 Base.:*(val::Real, ::I) where {I<:Instrument} = Position{I}(val)
 Base.:*(::I, val::Real) where {I<:Instrument} = Position{I}(val)
 
-Base.show(io::IO, inst::Instrument) = print(io, symbol(inst))
-Base.show(io::IO, ::MIME"text/plain", inst::Instrument) = print(io, symbol(inst))
+Base.show(io::IO, ::I) where {I<:Instrument} = print(io, symbol(I))
+Base.show(io::IO, ::MIME"text/plain", ::I) where {I<:Instrument} = print(io, symbol(I))
 
-Base.show(io::IO, p::Position) = print(io, p.amount, symbol(p))
-Base.show(io::IO, ::MIME"text/plain", p::Position) = print(io, amount(p), symbol(p))
+Base.show(io::IO, p::Position{I}) where {I<:Instrument} = print(io, p.amount, symbol(I))
+Base.show(io::IO, ::MIME"text/plain", p::Position{I}) where {I<:Instrument} = print(io, amount(p), symbol(I))
 
 end # module Instruments

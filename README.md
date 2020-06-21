@@ -44,9 +44,9 @@ All financial instruments should be subtypes of `Instrument`, which is an abstra
 
 ## `Cash{S,N} <: Instrument{S,currency(S))}`
 
-When a currency is thought of as a financial instrument (as opposed to a mere label), we choose to refer to it as "Cash" as it would appear in a balance sheet. This package implements the `Cash` instrument with parameter `S` being the 3-character ISO 4167 alpha label of the currency as a `Symbol` and an integer `N` representing the number of decimal places in the currency (typically 0, 2 or 3).
+When a currency is thought of as a financial instrument (as opposed to a mere label), we choose to refer to it as "Cash" as it would appear in a balance sheet. This package implements the `Cash` instrument with parameter `S` being the 3-character ISO 4217 alpha label of the currency as a `Symbol` and an integer `N` representing the number of decimal places in the currency (typically 0, 2 or 3).
 
-Short constants are set up, matching the ISO 4167 names, so that you can use `USD` instead of `Cash{:USD,2}()`.
+Short constants are set up, matching the ISO 4217 names, so that you can use `USD` instead of `Cash{:USD,2}()`.
 
 For example:
 
