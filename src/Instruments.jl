@@ -24,8 +24,8 @@ abstract type Instrument{S,C<:Currency} end
 symbol(::TI) where {TI<:Type{I}} where {I<:Instrument{S}} where {S} = S
 currency(::TI) where {TI<:Type{I}} where {I<:Instrument{S,Currency{CS}}} where {S,CS} = currency(CS)
 
-symbol(::I) where {I<:Instrument{S}} where {S} = S
-currency(::I) where {I<:Instrument{S,Currency{CS}}} where {S,CS} = currency(CS)
+symbol(::Instrument{S}) where {S} = S
+currency(::Instrument{S,Currency{CS}}) where {S,CS} = currency(CS)
 
 """
 `Position` represents ownership of a certain quantity of a particular financial instrument.
