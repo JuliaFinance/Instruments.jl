@@ -59,6 +59,8 @@ Returns the currency of the instrument in the `Position`.
 """
 currency(::Position{I}) where {I<:Instrument}= currency(I)
 
+Base.zero(::Type{Position{I,A}}) where {I<:Instrument,A<:Real} = Position{I,A}(0)
+
 Base.promote_rule(::Type{Position{I,A1}}, ::Type{Position{I,A2}}) where {I,A1,A2} =
     Position{I,promote_type(A1,A2)}
 Base.convert(::Type{Position{I,A}}, x::Position{I,A}) where {I,A} = x
