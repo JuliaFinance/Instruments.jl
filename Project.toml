@@ -9,7 +9,7 @@ version = "0.6.0"
 Currencies = "0fd90b74-7c1f-579e-9252-02cd883047b9"
 
 [compat]
-Currencies = "0.16"
+Currencies = "0.17"
 
 [extras]
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"

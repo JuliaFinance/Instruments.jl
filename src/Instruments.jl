@@ -57,7 +57,7 @@ symbol(::Position{I,A}) where {I,A} = symbol(I)
 """
 Returns the currency of the instrument in the `Position`.
 """
-currency(::Position{I}) where {I<:Instrument}= currency(I)
+currency(::Position{I}) where {I<:Instrument} = currency(I)
 
 Base.zero(::Type{Position{I,A}}) where {I<:Instrument,A<:Real} = Position{I,A}(0)
 
@@ -92,7 +92,9 @@ Base.:*(::I, val::Real) where {I<:Instrument} = Position{I}(val)
 Base.show(io::IO, ::I) where {I<:Instrument} = print(io, symbol(I))
 Base.show(io::IO, ::MIME"text/plain", ::I) where {I<:Instrument} = print(io, symbol(I))
 
-Base.show(io::IO, p::Position{I}) where {I<:Instrument} = print(io, p.amount, symbol(I))
-Base.show(io::IO, ::MIME"text/plain", p::Position{I}) where {I<:Instrument} = print(io, amount(p), symbol(I))
+Base.show(io::IO, p::Position{I}) where {I<:Instrument} =
+    print(io, p.amount, symbol(I))
+Base.show(io::IO, ::MIME"text/plain", p::Position{I}) where {I<:Instrument} =
+    print(io, p.amount, symbol(I))
 
 end # module Instruments
