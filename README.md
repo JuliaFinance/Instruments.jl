@@ -30,8 +30,8 @@ A financial instrument is a tradeable monetary contract that creates both an ass
 
 | **Info** | **Travis** | **Package Evaluator** | **Coverage** |
 |:------------------:|:---------------------:|:-----------------:|:---------------------:|
-| [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
-| Master | [![][travis-m-img]][travis-url] | [![][pkg-img]][pkg-url] | [![][codecov-img]][codecov-url]
+| [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][eval-img]][pkg-url] | [![][codecov-img]][codecov-url]
+| Master | [![][travis-m-img]][travis-url] | [![][eval-img]][pkg-url] | [![][codecov-img]][codecov-url]
 
 ## `Instrument{S,C<:Currency}`
 
