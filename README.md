@@ -1,37 +1,15 @@
 # Instruments.jl
 
-This package provides an interface to be implemented for all financial instruments in JuliaFinance.
-
-A financial instrument is a tradeable monetary contract that creates both an asset for one party and a liability for another. Examples of financial instruments include currencies, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
-
-[pkg-url]: https://github.com/JuliaFinance/Instruments.jl.git
-
-[eval-url]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/report.html
-[eval-img]: https://juliaci.github.io/NanosoldierReports/pkgeval_badges/I/Instruments.svg
-
-[release]:      https://img.shields.io/github/release/JuliaFinance/Instruments.jl.svg
-[release-date]: https://img.shields.io/github/release-date/JuliaFinance/Instruments.jl.svg
-
-[license-img]:  http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
-[license-url]:  LICENSE.md
-[julia-url]:          https://github.com/JuliaLang/julia
-[julia-release]:      https://img.shields.io/github/release/JuliaLang/julia.svg
-
 [travis-url]:   https://travis-ci.org/JuliaFinance/Instruments.jl
 [travis-s-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg
 [travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=master
 
-[contrib]:    https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+[![][travis-s-img]][travis-url] [![][travis-m-img]][travis-url]
 
-[codecov-url]:  https://codecov.io/gh/JuliaFinance/Instruments.jl
-[codecov-img]:  https://codecov.io/gh/JuliaFinance/Instruments.jl/branch/master/graph/badge.svg
+This package provides an interface to be implemented for all financial instruments in JuliaFinance.
 
-[![][release]][pkg-url] [![][release-date]][pkg-url] [![][license-img]][license-url] [![contributions welcome][contrib]](https://github.com/JuliaFinance/Instruments.jl/issues)
+A financial instrument is a tradeable monetary contract that creates both an asset for one party and a liability for another. Examples of financial instruments include currencies, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
 
-| **Info** | **Travis** | **Package Evaluator** | **Coverage** |
-|:------------------:|:---------------------:|:-----------------:|:---------------------:|
-| [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][eval-img]][pkg-url] | [![][codecov-img]][codecov-url]
-| Master | [![][travis-m-img]][travis-url] | [![][eval-img]][pkg-url] | [![][codecov-img]][codecov-url]
 
 ## `Instrument{S,C<:Currency}`
 
