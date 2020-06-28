@@ -2,7 +2,7 @@
 
 [travis-url]:   https://travis-ci.org/JuliaFinance/Instruments.jl
 [travis-s-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg
-[travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=master
+[travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=main
 
 [![][travis-s-img]][travis-url] [![][travis-m-img]][travis-url]
 
