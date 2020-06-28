@@ -12,6 +12,6 @@ This package provides an interface to be implemented for all financial instrumen
 
 `Instrument{S,C}` is an abstract parametric type that is to be implemented for all financial instruments, where `S` the instrument's symbol identifier and `C` is its `Currency`.
 
-For concrete implementation of `Instrument`, see
+For examples of concrete implementations of `Instrument`, see
 
 - [Assets.jl](https://github.com/JuliaFinance/Assets.jl.git)
