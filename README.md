@@ -6,7 +6,7 @@
 
 [![][travis-s-img]][travis-url] [![][travis-m-img]][travis-url]
 
-This package provides an interface to be implemented for all financial instruments in JuliaFinance. Examples of financial instruments can include cash, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
+This package provides an abstract interface to be implemented for all financial instruments in JuliaFinance. Examples of financial instruments can include cash, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
 
 ## `Instrument{S,C<:Currency}`
 
