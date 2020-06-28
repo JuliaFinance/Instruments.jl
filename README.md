@@ -1,6 +1,6 @@
 # Instruments.jl
 
-This is a core package for the JuliaFinance ecosytem.
+This package provides an interface to be implemented for all financial instruments in JuliaFinance.
 
 A financial instrument is a tradeable monetary contract that creates both an asset for one party and a liability for another. Examples of financial instruments include currencies, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
 

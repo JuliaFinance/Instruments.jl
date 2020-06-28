@@ -35,7 +35,7 @@ struct Position{I<:Instrument,A}
 end
 Position{I}(a) where {I<:Instrument} = Position{I,typeof(a)}(a)
 
-(instrument::I)(amount) where {I<:Instrument} = Position{I}(amount)
+(instrument::Instrument)(amount) = Position{typeof(instrument)}(amount)
 
 """
 Returns the financial instrument type of a position.
