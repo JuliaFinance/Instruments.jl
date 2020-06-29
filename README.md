@@ -1,8 +1,3 @@
-# Instruments.jl
-
-
-This package provides an abstract interface to be implemented for all financial instruments in JuliaFinance. Examples of financial instruments can include cash, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc.
-
 [pkg-url]: https://github.com/JuliaFinance/Instruments.jl.git
 
 [release]:      https://img.shields.io/github/release/JuliaFinance/Instruments.jl.svg
@@ -27,11 +22,13 @@ This package provides an abstract interface to be implemented for all financial 
 | [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][codecov-img]][codecov-url]
 | Latest | [![][travis-m-img]][travis-url] | [![][codecov-img]][codecov-url]
 
+# Instruments.jl
+
+This package provides an abstract interface to be implemented for all financial instruments in JuliaFinance. Examples of financial instruments can include cash, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc.
+
 ## `Instrument{S,C<:Currency}`
 
 `Instrument{S,C}` is an abstract parametric type that is to be implemented for all financial instruments, where `S` the instrument's symbol identifier and `C` is its `Currency`.
 
-For examples of concrete implementations of `Instrument`, see
-
-[Assets.jl](https://github.com/JuliaFinance/Assets.jl.git)
+For examples of concrete implementations of `Instrument`, see [Assets.jl](https://github.com/JuliaFinance/Assets.jl.git).
 
