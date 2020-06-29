@@ -1,7 +1,8 @@
 """
 Instruments
 
-This package provides the `Instrument` abstract type together with the `Position` parametric type for dealing with currencies and other financial instruments.
+This package provides the `Instrument` abstract type together with the `Position` parametric type
+for dealing with currencies and other financial instruments.
 
 See [README](https://github.com/JuliaFinance/Instruments.jl.git/README.md) for the full documentation
 
@@ -21,21 +22,21 @@ This is an abstract type from which all financial instruments such as `Cash`, `S
 """
 abstract type Instrument{S,C<:Currency} end
 
-symbol(::TI) where {TI<:Type{I}} where {I<:Instrument{S}} where {S} = S
-currency(::TI) where {TI<:Type{I}} where {I<:Instrument{S,Currency{CS}}} where {S,CS} = currency(CS)
+symbol(::Type{Instrument{S}}) where {S} = S
+currency(::Type{Instrument{S,Currency{C}}}) where {S,C} = currency(C)
 
 symbol(::Instrument{S}) where {S} = S
-currency(::Instrument{S,Currency{CS}}) where {S,CS} = currency(CS)
+currency(::Instrument{S,Currency{C}}) where {S,C} = currency(C)
 
 """
 `Position` represents ownership of a certain quantity of a particular financial instrument.
 """
-struct Position{I<:Instrument,A}
+struct Position{I<:Instrument,A<:Real}
     amount::A
 end
-Position{I}(a) where {I<:Instrument} = Position{I,typeof(a)}(a)
+Position{I}(amt) where {I<:Instrument} = Position{I,typeof(amt)}(amt)
 
-(instrument::Instrument)(amount) = Position{typeof(instrument)}(amount)
+(::Type{I})(amt) where {I<:Instrument} = Position{I}(amt)
 
 """
 Returns the financial instrument type of a position.
@@ -50,7 +51,7 @@ amount(p::Position) = p.amount
 """
 Returns the symbol of the instrument in the `Position`.
 """
-symbol(::Position{I,A}) where {I,A} = symbol(I)
+symbol(::Position{I}) where {I} = symbol(I)
 
 """
 Returns the currency of the instrument in the `Position`.
@@ -62,7 +63,7 @@ Base.zero(::Type{Position{I,A}}) where {I<:Instrument,A<:Real} = Position{I,A}(0
 Base.promote_rule(::Type{Position{I,A1}}, ::Type{Position{I,A2}}) where {I,A1,A2} =
     Position{I,promote_type(A1,A2)}
 Base.convert(::Type{Position{I,A}}, x::Position{I,A}) where {I,A} = x
-Base.convert(::Type{Position{I}}, x::Position{I}) where {I,A} =
+Base.convert(::Type{Position{I,A}}, x::Position{I}) where {I,A} =
     Position{I}(convert(A, x.amount))
 
 Base.:+(::Position{I1}, ::Position{I2}) where {I1,I2} =
@@ -84,15 +85,10 @@ Base.:/(p::Position{I}, k::Real) where {I} = Position{I}(p.amount / k)
 Base.:*(k::Real, p::Position{I}) where {I} = Position{I}(p.amount * k)
 Base.:*(p::Position, k::Real) = k * p
 
-Base.:*(val::Real, ::I) where {I<:Instrument} = Position{I}(val)
-Base.:*(::I, val::Real) where {I<:Instrument} = Position{I}(val)
+Base.:*(val::Real, ::Type{I}) where {I<:Instrument} = Position{I}(val)
+Base.:*(::Type{I}, val::Real) where {I<:Instrument} = Position{I}(val)
 
 Base.show(io::IO, ::I) where {I<:Instrument} = print(io, symbol(I))
-Base.show(io::IO, ::MIME"text/plain", ::I) where {I<:Instrument} = print(io, symbol(I))
-
-Base.show(io::IO, p::Position{I}) where {I<:Instrument} =
-    print(io, p.amount, symbol(I))
-Base.show(io::IO, ::MIME"text/plain", p::Position{I}) where {I<:Instrument} =
-    print(io, p.amount, symbol(I))
+Base.show(io::IO, p::Position{I}) where {I<:Instrument} = print(io, p.amount, symbol(I))
 
 end # module Instruments

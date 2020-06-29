@@ -1,12 +1,31 @@
 # Instruments.jl
 
+
+This package provides an abstract interface to be implemented for all financial instruments in JuliaFinance. Examples of financial instruments can include cash, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc.
+
+[pkg-url]: https://github.com/JuliaFinance/Instruments.jl.git
+
+[release]:      https://img.shields.io/github/release/JuliaFinance/Instruments.jl.svg
+[release-date]: https://img.shields.io/github/release-date/JuliaFinance/Instruments.jl.svg
+
+[license-img]:  http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
+[license-url]:  LICENSE.md
+[julia-url]:          https://github.com/JuliaLang/julia
+[julia-release]:      https://img.shields.io/github/release/JuliaLang/julia.svg
+
 [travis-url]:   https://travis-ci.org/JuliaFinance/Instruments.jl
 [travis-s-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg
-[travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=main
+[travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=master
 
-[![][travis-s-img]][travis-url] [![][travis-m-img]][travis-url]
+[contrib]:    https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
 
-This package provides an abstract interface to be implemented for all financial instruments in JuliaFinance. Examples of financial instruments can include cash, stocks, bonds, loans, derivatives, insurance policies, cryptocurrencies, etc. 
+[codecov-url]:  https://codecov.io/gh/JuliaFinance/Instruments.jl
+[codecov-img]:  https://codecov.io/gh/JuliaFinance/Instruments.jl/branch/master/graph/badge.svg
+
+| **Julia Version** | **Unit Tests** | **Code Coverage** |
+|:------------------:|:------------------:|:---------------------:|
+| [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][codecov-img]][codecov-url]
+| Latest | [![][travis-m-img]][travis-url] | [![][codecov-img]][codecov-url]
 
 ## `Instrument{S,C<:Currency}`
 
@@ -14,4 +33,5 @@ This package provides an abstract interface to be implemented for all financial 
 
 For examples of concrete implementations of `Instrument`, see
 
-- [Assets.jl](https://github.com/JuliaFinance/Assets.jl.git)
+[Assets.jl](https://github.com/JuliaFinance/Assets.jl.git)
+
