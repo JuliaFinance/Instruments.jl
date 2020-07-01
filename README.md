@@ -1,26 +1,10 @@
-[pkg-url]: https://github.com/JuliaFinance/Instruments.jl.git
-
-[release]:      https://img.shields.io/github/release/JuliaFinance/Instruments.jl.svg
-[release-date]: https://img.shields.io/github/release-date/JuliaFinance/Instruments.jl.svg
-
-[license-img]:  http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
-[license-url]:  LICENSE.md
-[julia-url]:          https://github.com/JuliaLang/julia
-[julia-release]:      https://img.shields.io/github/release/JuliaLang/julia.svg
-
 [travis-url]:   https://travis-ci.org/JuliaFinance/Instruments.jl
-[travis-s-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg
-[travis-m-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg?branch=master
-
-[contrib]:    https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+[travis-img]: https://travis-ci.org/JuliaFinance/Instruments.jl.svg
 
 [codecov-url]:  https://codecov.io/gh/JuliaFinance/Instruments.jl
 [codecov-img]:  https://codecov.io/gh/JuliaFinance/Instruments.jl/branch/master/graph/badge.svg
 
-| **Julia Version** | **Unit Tests** | **Code Coverage** |
-|:------------------:|:------------------:|:---------------------:|
-| [![][julia-release]][julia-url] | [![][travis-s-img]][travis-url] | [![][codecov-img]][codecov-url]
-| Latest | [![][travis-m-img]][travis-url] | [![][codecov-img]][codecov-url]
+[![][travis-img]][travis-url] [![][codecov-img]][codecov-url]
 
 # Instruments.jl
 

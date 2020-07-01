@@ -88,6 +88,10 @@ Base.:*(p::Position, k::Real) = k * p
 Base.:*(val::Real, ::Type{I}) where {I<:Instrument} = Position{I}(val)
 Base.:*(::Type{I}, val::Real) where {I<:Instrument} = Position{I}(val)
 
+# Handle instances of Instruments also
+Base.:*(val::Real, ::I) where {I<:Instrument} = Position{I}(val)
+Base.:*(::I, val::Real) where {I<:Instrument} = Position{I}(val)
+
 Base.show(io::IO, ::I) where {I<:Instrument} = print(io, symbol(I))
 Base.show(io::IO, p::Position{I}) where {I<:Instrument} = print(io, p.amount, symbol(I))
 
