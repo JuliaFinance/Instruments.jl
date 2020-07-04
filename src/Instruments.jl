@@ -11,11 +11,9 @@ Licensed under MIT License, see [LICENSE](https://github.com/JuliaFinance/Instru
 """
 module Instruments
 
-using Currencies: Currency
-import Currencies: currency, symbol
+using Currencies
 
-export Instrument, Position
-export instrument, position, amount, currency, symbol
+export Instrument, Position, symbol, currency, instrument, position, amount
 
 "`Instrument` is an abstract type from which all financial instruments such as `Cash`, `Stock`, etc. should subtype."
 abstract type Instrument{S,C<:Currency} end
@@ -27,13 +25,13 @@ end
 
 Position(::Type{I},amt) where {I<:Instrument} = Position{I,typeof(amt)}(amt)
 
-symbol(::Type{I}) where {S,I<:Instrument{S}} = S
+Currencies.symbol(::Type{I}) where {S,I<:Instrument{S}} = S
 
-symbol(::P) where {I,P<:Position{I}} = symbol(I)
+Currencies.symbol(::P) where {I,P<:Position{I}} = symbol(I)
 
-currency(::Type{I}) where {S,C,I<:Instrument{S,C}} = C
+Currencies.currency(::Type{I}) where {S,C,I<:Instrument{S,C}} = C
 
-currency(::P) where {I,P<:Position{I}} = currency(I)
+Currencies.currency(::P) where {I,P<:Position{I}} = currency(I)
 
 """
 Returns the financial instrument type of a position.
