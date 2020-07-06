@@ -27,11 +27,11 @@ Position(::Type{I},amt) where {I<:Instrument} = Position{I,typeof(amt)}(amt)
 
 Currencies.symbol(::Type{I}) where {S,I<:Instrument{S}} = S
 
-Currencies.symbol(::P) where {I,P<:Position{I}} = symbol(I)
+Currencies.symbol(::Type{P}) where {I,P<:Position{I}} = symbol(I)
 
 Currencies.currency(::Type{I}) where {S,C,I<:Instrument{S,C}} = C
 
-Currencies.currency(::P) where {I,P<:Position{I}} = currency(I)
+Currencies.currency(::Type{P}) where {I,P<:Position{I}} = currency(I)
 
 """
 Returns the financial instrument type of a position.
@@ -40,14 +40,14 @@ function instrument end
 
 instrument(::Type{I}) where {I<:Instrument} = I
 
-instrument(::P) where {I,P<:Position{I}} = I
+instrument(::Type{P}) where {I,P<:Position{I}} = I
 
 """
 Returns the type of a position.
 """
 function position end
 
-position(::P) where {P<:Position} = P
+position(::Type{P}) where {P<:Position} = P
 
 """
 Returns the amount of the instrument in the `Position` owned.
