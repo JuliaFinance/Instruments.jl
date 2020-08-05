@@ -1,5 +1,4 @@
-using Currencies, Instruments
-using Instruments: currency, symbol, unit, code, name
+using Instruments, Currencies
 
 using Test
 

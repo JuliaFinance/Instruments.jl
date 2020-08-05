@@ -3,13 +3,13 @@ uuid = "2a4f3d17-849a-48a1-809e-d780c70a95a0"
 license = "MIT"
 desc = "Financial Instruments"
 authors = ["Eric Forgy <Eric.Forgy@cavalre.com>", "ScottPJones <scottjones@alum.mit.edu>"]
-version = "0.8.0"
+version = "0.10.0"
 
 [deps]
 Currencies = "0fd90b74-7c1f-579e-9252-02cd883047b9"
 
 [compat]
-Currencies = ">= 0.17"
+Currencies = "0.18"
 
 [extras]
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
